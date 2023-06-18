@@ -49,7 +49,7 @@ Create a new deck. The deck has previously been shuffled, and the first card dra
 
 ### Postman Example
 
-
+![image](https://github.com/CamHowling/CardGame/assets/15999072/376190e7-7160-4978-8004-8220fd46f490)
 
 ## GET DECK
 
@@ -74,7 +74,7 @@ Retrieve a deck passing an id as a parameter.
 
 ### Postman Example
 
-
+![image](https://github.com/CamHowling/CardGame/assets/15999072/8ee3204d-3e7a-4c40-8408-4b95869a01c0)
 
 ## END GAME
 
@@ -91,6 +91,10 @@ Set a deck to inactive, passing an id as a parameter.
         {
             "success": true
         }
+
+### Postman Example
+
+![image](https://github.com/CamHowling/CardGame/assets/15999072/e06a33d8-8931-491d-b54b-31b180854abc)
 
 ## SUBMIT GUESS
 
@@ -117,4 +121,4 @@ The response includes a server validated evaluation of the guess.
 
 ### Postman Example
 
-
+![image](https://github.com/CamHowling/CardGame/assets/15999072/cf5369da-6582-4be3-ba68-6468a914dd96)
