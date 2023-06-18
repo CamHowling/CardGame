@@ -12,12 +12,10 @@ namespace CardGame.Domain.Repositories.Interfaces
         public IEnumerable<Pile> GetDeckPiles(Deck deck);
 
         /// <summary>
-        /// Removes a card from the draw pile and places it in the discard pile
+        /// Create a new pile item in the database
         /// </summary>
-        /// <param name="drawPileId"></param>
-        /// <param name="discardPileId"></param>
-        /// <returns></returns>
-        public IEnumerable<Pile> DrawCard(int drawPileId, int discardPileId);
+        /// <param name="pile"></param>
+        public void CreatePile(Pile pile);
 
         /// <summary>
         /// Save pending changes to the database
