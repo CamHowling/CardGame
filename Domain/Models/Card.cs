@@ -9,18 +9,18 @@ namespace CardGame.Domain.Models
         [Key]
         [Required]
         [Column("Card_Id")]
-        int Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [Column("Signature")]
-        string Signature { get; set; }
+        public string Signature { get; set; }
 
         [Required]
         [Column("Name")]
-        string Name { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [Column("Value")]
-        string Value { get; set; }
+        public string Value { get; set; }
     }
 }

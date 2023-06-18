@@ -9,24 +9,24 @@ namespace CardGame.Domain.Models
         [Key]
         [Required]
         [Column("Deck_Id")]
-        int Id { get; set; }
+        public int Id { get; set; }
 
         [ForeignKey("Pile_Id")]
         [Required]
         [Column("Draw_Pile")]
-        int DrawPile { get; set; }
+        public int DrawPile { get; set; }
 
         [ForeignKey("Pile_Id")]
         [Required]
         [Column("Discard_Pile")]
-        int DiscardPile { get; set; }
+        public int DiscardPile { get; set; }
 
         [Required]
         [Column("Is_Active")]
-        bool IsActive { get; set; }
+        public bool IsActive { get; set; }
 
         [Required]
         [Column("Last_Modified")]
-        DateTime Modified { get; set; }
+        public DateTime Modified { get; set; }
     }
 }
