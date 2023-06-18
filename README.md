@@ -1,5 +1,7 @@
 # CardGame 
 
+![image](https://github.com/CamHowling/CardGame/assets/15999072/74ce4af5-1f50-4510-868c-bb5ffc9cbcff)
+
 This is a simple API to support a specific card game design.
 
 The application uses entity framework with postgres for the database. And the backend uses dotnet core.
