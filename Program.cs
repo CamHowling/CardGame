@@ -1,4 +1,6 @@
 using CardGame.Database;
+using CardGame.Domain.Repositories;
+using CardGame.Domain.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,9 +11,13 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 
 //Dependency injection registration for repos
 //TODO refactor into separate class
+builder.Services.AddScoped<IDeckRepository, DeckRepository>();
+builder.Services.AddScoped<IPileRepository, PileRepository>();
+builder.Services.AddScoped<ICardRepository, CardRepository>();
 
 //Add automapper
 //TODO replace automapper with explicit ToModel/FromModel extension methods
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
