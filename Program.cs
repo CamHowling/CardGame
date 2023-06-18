@@ -1,15 +1,24 @@
-var builder = WebApplication.CreateBuilder(args);
+using CardGame.Database;
+using Microsoft.EntityFrameworkCore;
+using System;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("ContainerConnection");
+builder.Services.AddDbContext<DatabaseContext>(options =>
+    options.UseNpgsql(connectionString)
+);
+
+//Dependency injection registration for repos
+//TODO refactor into separate class
+
+//Add automapper
+//TODO replace automapper with explicit ToModel/FromModel extension methods
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -17,9 +26,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
+
+DatabaseConfig.Initialize(app);
 
 app.Run();
