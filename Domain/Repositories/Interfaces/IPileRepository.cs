@@ -4,9 +4,6 @@ namespace CardGame.Domain.Repositories.Interfaces
 {
     public interface IPileRepository
     {
-        public IEnumerable<Pile> GetDrawPile(int drawPileId);
-        public IEnumerable<Pile> GetDiscardPile(int discardPileId);
-
         /// <summary>
         /// Gets the discard and draw piles for a given deck
         /// </summary>
