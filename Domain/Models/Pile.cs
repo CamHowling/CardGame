@@ -6,6 +6,13 @@ namespace CardGame.Domain.Models
     [Table("Pile")]
     public class Pile
     {
+        public Pile()
+        {
+            Cards = new List<string>();
+            IsDrawPile = false;
+            IsDiscardPile = false;
+        }
+
         [Key]
         [Required]
         [Column("Pile_Id")]

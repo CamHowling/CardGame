@@ -21,6 +21,6 @@ namespace CardGame.Domain.Models
 
         [Required]
         [Column("Value")]
-        public string Value { get; set; }
+        public int Value { get; set; }
     }
 }

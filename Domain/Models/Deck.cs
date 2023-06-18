@@ -24,9 +24,5 @@ namespace CardGame.Domain.Models
         [Required]
         [Column("Is_Active")]
         public bool IsActive { get; set; }
-
-        [Required]
-        [Column("Last_Modified")]
-        public DateTime Modified { get; set; }
     }
 }
