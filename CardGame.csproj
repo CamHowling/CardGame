@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="API\Controllers\" />
+    <Folder Include="Domain\Repositories\" />
   </ItemGroup>
 
 </Project>

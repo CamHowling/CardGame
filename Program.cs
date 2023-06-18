@@ -1,6 +1,5 @@
 using CardGame.Database;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ContainerConnection");
