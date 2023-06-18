@@ -6,6 +6,11 @@ namespace CardGame.Domain.Models
     [Table("deck")]
     public class Deck
     {
+        public Deck()
+        {
+            IsActive = true;
+        }
+
         [Key]
         [Required]
         [Column("deck_id")]

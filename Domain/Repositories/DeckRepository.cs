@@ -27,7 +27,8 @@ namespace CardGame.Domain.Repositories
 
         public Deck GetDeckById(int id)
         {
-            var deck = _Context.Decks.FirstOrDefault(deck => deck.Id == id);
+            var decks = _Context.Decks;
+            var deck = decks.FirstOrDefault(deck => deck.Id == id);
             if (deck == null)
             {
                 throw new KeyNotFoundException(nameof(id));

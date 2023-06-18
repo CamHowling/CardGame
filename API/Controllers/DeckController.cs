@@ -37,23 +37,28 @@ namespace CardGame.API.Controllers
         [HttpGet]
         public JsonResult NewGame()
         {
-            var drawPile = new Pile();
-            drawPile.IsDrawPile = true;
+
             var allCards = _CardRepository.GetAllCards().ToList();
             allCards.Shuffle();
-
             var firstCard = allCards.First();
             allCards.Remove(firstCard);
+
+            var drawPile = new Pile();
+            drawPile.IsDrawPile = true;
             drawPile.Cards = allCards.Select(card => card.Signature).ToList();
+            _PileRepository.CreatePile(drawPile);
+            _PileRepository.SaveChanges();
 
             var discard = new Pile();
             discard.IsDiscardPile = true;
             discard.Cards.Add(firstCard.Signature);
+            _PileRepository.CreatePile(discard);
             _PileRepository.SaveChanges();
 
             var deck = new Deck();
             deck.DrawPile = drawPile.Id;
             deck.DiscardPile = discard.Id;
+            Console.Write("DeckId: " + deck.Id + ", DrawPileId: " + deck.DrawPile + ", DiscardPileId: " + deck.DiscardPile);
             _DeckRepository.CreateDeck(deck);
             _DeckRepository.SaveChanges();
 
@@ -136,7 +141,7 @@ namespace CardGame.API.Controllers
             var drawCardIsHigher = drawCard.Value > previousCard.Value;
             var drawCardIsLower = drawCard.Value < previousCard.Value;
             var correctGuess = false;
-            if (isHigher && drawCardIsHigher || isLower && drawCardIsLower)
+            if ((isHigher && drawCardIsHigher) || (isLower && drawCardIsLower))
             {
                 correctGuess = true;
             }
