@@ -8,21 +8,21 @@ namespace CardGame.Domain.Models
     {
         [Key]
         [Required]
-        [Column("Deck_Id")]
+        [Column("deck_id")]
         public int Id { get; set; }
 
-        [ForeignKey("Pile_Id")]
+        [ForeignKey("pile_id")]
         [Required]
-        [Column("Draw_Pile")]
+        [Column("draw_pile")]
         public int DrawPile { get; set; }
 
-        [ForeignKey("Pile_Id")]
+        [ForeignKey("pile_id")]
         [Required]
-        [Column("Discard_Pile")]
+        [Column("discard_pile")]
         public int DiscardPile { get; set; }
 
         [Required]
-        [Column("Is_Active")]
+        [Column("is_active")]
         public bool IsActive { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -8,53 +7,54 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CardGame.Database.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class CreateInitial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Card",
+                name: "card",
                 columns: table => new
                 {
-                    Card_Id = table.Column<int>(type: "integer", nullable: false)
+                    card_Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Signature = table.Column<string>(type: "text", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Value = table.Column<string>(type: "text", nullable: false)
+                    signature = table.Column<string>(type: "text", nullable: false),
+                    name = table.Column<string>(type: "text", nullable: false),
+                    value = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Card", x => x.Card_Id);
+                    table.PrimaryKey("PK_card", x => x.card_Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "deck",
                 columns: table => new
                 {
-                    Deck_Id = table.Column<int>(type: "integer", nullable: false)
+                    deck_id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Draw_Pile = table.Column<int>(type: "integer", nullable: false),
-                    Discard_Pile = table.Column<int>(type: "integer", nullable: false),
-                    Is_Active = table.Column<bool>(type: "boolean", nullable: false),
-                    Last_Modified = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    draw_pile = table.Column<int>(type: "integer", nullable: false),
+                    discard_pile = table.Column<int>(type: "integer", nullable: false),
+                    is_active = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_deck", x => x.Deck_Id);
+                    table.PrimaryKey("PK_deck", x => x.deck_id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Pile",
+                name: "pile",
                 columns: table => new
                 {
-                    Pile_Id = table.Column<int>(type: "integer", nullable: false)
+                    pile_id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Cards = table.Column<List<string>>(type: "text[]", nullable: false)
+                    cards = table.Column<List<string>>(type: "text[]", nullable: false),
+                    is_draw_pile = table.Column<bool>(type: "boolean", nullable: false),
+                    is_discard_pile = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pile", x => x.Pile_Id);
+                    table.PrimaryKey("PK_pile", x => x.pile_id);
                 });
         }
 
@@ -62,13 +62,13 @@ namespace CardGame.Database.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Card");
+                name: "card");
 
             migrationBuilder.DropTable(
                 name: "deck");
 
             migrationBuilder.DropTable(
-                name: "Pile");
+                name: "pile");
         }
     }
 }

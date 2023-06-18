@@ -3,24 +3,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CardGame.Domain.Models
 {
-    [Table("Card")]
+    [Table("card")]
     public class Card
     {
         [Key]
         [Required]
-        [Column("Card_Id")]
+        [Column("card_Id")]
         public int Id { get; set; }
 
         [Required]
-        [Column("Signature")]
+        [Column("signature")]
         public string Signature { get; set; }
 
         [Required]
-        [Column("Name")]
+        [Column("name")]
         public string Name { get; set; }
 
         [Required]
-        [Column("Value")]
+        [Column("value")]
         public int Value { get; set; }
     }
 }

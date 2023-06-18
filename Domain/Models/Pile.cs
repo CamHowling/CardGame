@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CardGame.Domain.Models
 {
-    [Table("Pile")]
+    [Table("pile")]
     public class Pile
     {
         public Pile()
@@ -15,19 +15,19 @@ namespace CardGame.Domain.Models
 
         [Key]
         [Required]
-        [Column("Pile_Id")]
+        [Column("pile_id")]
         public int Id { get; set; }
 
         [Required]
-        [Column("Cards")]
+        [Column("cards")]
         public List<string> Cards { get; set; }
 
         [Required]
-        [Column("Is_Draw_Pile")]
+        [Column("is_draw_pile")]
         public bool IsDrawPile { get; set; }
 
         [Required]
-        [Column("Is_Discard_Pile")]
+        [Column("is_discard_pile")]
         public bool IsDiscardPile { get; set; }
     }
 }

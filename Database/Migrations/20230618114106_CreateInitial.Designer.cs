@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CardGame.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230618104832_RefactorModels")]
-    partial class RefactorModels
+    [Migration("20230618114106_CreateInitial")]
+    partial class CreateInitial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,27 +30,27 @@ namespace CardGame.Database.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("Card_Id");
+                        .HasColumnName("card_Id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("Name");
+                        .HasColumnName("name");
 
                     b.Property<string>("Signature")
                         .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("Signature");
+                        .HasColumnName("signature");
 
                     b.Property<int>("Value")
                         .HasColumnType("integer")
-                        .HasColumnName("Value");
+                        .HasColumnName("value");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Card");
+                    b.ToTable("card");
                 });
 
             modelBuilder.Entity("CardGame.Domain.Models.Deck", b =>
@@ -58,21 +58,21 @@ namespace CardGame.Database.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("Deck_Id");
+                        .HasColumnName("deck_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("DiscardPile")
                         .HasColumnType("integer")
-                        .HasColumnName("Discard_Pile");
+                        .HasColumnName("discard_pile");
 
                     b.Property<int>("DrawPile")
                         .HasColumnType("integer")
-                        .HasColumnName("Draw_Pile");
+                        .HasColumnName("draw_pile");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean")
-                        .HasColumnName("Is_Active");
+                        .HasColumnName("is_active");
 
                     b.HasKey("Id");
 
@@ -84,26 +84,26 @@ namespace CardGame.Database.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("Pile_Id");
+                        .HasColumnName("pile_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<List<string>>("Cards")
                         .IsRequired()
                         .HasColumnType("text[]")
-                        .HasColumnName("Cards");
+                        .HasColumnName("cards");
 
                     b.Property<bool>("IsDiscardPile")
                         .HasColumnType("boolean")
-                        .HasColumnName("Is_Discard_Pile");
+                        .HasColumnName("is_discard_pile");
 
                     b.Property<bool>("IsDrawPile")
                         .HasColumnType("boolean")
-                        .HasColumnName("Is_Draw_Pile");
+                        .HasColumnName("is_draw_pile");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pile");
+                    b.ToTable("pile");
                 });
 #pragma warning restore 612, 618
         }
