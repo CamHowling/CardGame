@@ -14,5 +14,13 @@ namespace CardGame.Domain.Models
         [Required]
         [Column("Cards")]
         public List<string> Cards { get; set; }
+
+        [Required]
+        [Column("Is_Draw_Pile")]
+        public bool IsDrawPile { get; set; }
+
+        [Required]
+        [Column("Is_Discard_Pile")]
+        public bool IsDiscardPile { get; set; }
     }
 }
