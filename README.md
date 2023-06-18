@@ -47,6 +47,10 @@ Create a new deck. The deck has previously been shuffled, and the first card dra
             }
         }
 
+### Postman Example
+
+
+
 ## GET DECK
 
 Retrieve a deck passing an id as a parameter.
@@ -68,7 +72,11 @@ Retrieve a deck passing an id as a parameter.
             }
         }
 
-## End Game
+### Postman Example
+
+
+
+## END GAME
 
 Set a deck to inactive, passing an id as a parameter.
 
@@ -106,3 +114,7 @@ The response includes a server validated evaluation of the guess.
                 "value": CARDVALUE
             },
         }
+
+### Postman Example
+
+
