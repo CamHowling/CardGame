@@ -62,9 +62,10 @@ namespace CardGame.API.Controllers
             _DeckRepository.CreateDeck(deck);
             _DeckRepository.SaveChanges();
 
-            var model = _Mapper.Map<Deck, DeckModel>(deck);
+            var deckModel = _Mapper.Map<Deck, DeckModel>(deck);
+            var firstCardModel = _Mapper.Map<Card, CardModel>(firstCard);
 
-            return Json( new { deck = model });
+            return Json( new { deck = deckModel, firstCard = firstCardModel });
         }
 
         /// <summary>
