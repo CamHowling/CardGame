@@ -58,7 +58,6 @@ namespace CardGame.API.Controllers
             var deck = new Deck();
             deck.DrawPile = drawPile.Id;
             deck.DiscardPile = discard.Id;
-            Console.Write("DeckId: " + deck.Id + ", DrawPileId: " + deck.DrawPile + ", DiscardPileId: " + deck.DiscardPile);
             _DeckRepository.CreateDeck(deck);
             _DeckRepository.SaveChanges();
 
@@ -66,6 +65,39 @@ namespace CardGame.API.Controllers
             var firstCardModel = _Mapper.Map<Card, CardModel>(firstCard);
 
             return Json( new { deck = deckModel, firstCard = firstCardModel });
+        }
+
+        /// <summary>
+        /// retrieves the discard pile for a given deck
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidDataException"></exception>
+        [HttpGet]
+        public JsonResult GetDiscardPile(int id)
+        {
+            var deck = _DeckRepository.GetDeckById(id);
+            if (deck == null)
+            {
+                throw new InvalidDataException(nameof(deck));
+            }
+
+            var piles = _PileRepository.GetDeckPiles(deck);
+            if (piles == null)
+            {
+                throw new InvalidDataException(nameof(deck));
+            }
+
+            var discardPile = piles.FirstOrDefault(p => p.IsDiscardPile);
+            if (discardPile == null)
+            {
+                throw new InvalidDataException(nameof(discardPile));
+            }
+
+            var previousCards = discardPile.Cards.ToArray();
+            var drawnCount = previousCards.Count();
+
+            return Json(new { drawnCards = previousCards, drawnCount = drawnCount });
         }
 
         /// <summary>
@@ -148,10 +180,15 @@ namespace CardGame.API.Controllers
             }
 
             drawPile.Cards.Remove(drawCardSignature);
+            _PileRepository.SaveChanges();
+
+            var cardArray = drawPile.Cards.ToArray();
+            var cardRemainingCount = cardArray.Count();
+
             discardPile.Cards.Add(drawCardSignature);
             _PileRepository.SaveChanges();
 
-            return Json(new { correct = correctGuess, model = cardModel });
+            return Json(new { correct = correctGuess, model = cardModel, count = cardRemainingCount });
         }
     }
 }
